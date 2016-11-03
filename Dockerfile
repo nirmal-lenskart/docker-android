@@ -2,13 +2,13 @@ FROM ubuntu:14.04
 
 MAINTAINER Nirmal Prasad "nirmalp@valyoo.in"
 
-# Install java7
+# Install java8
 RUN apt-get update && \
   apt-get install -y software-properties-common && \
   add-apt-repository -y ppa:webupd8team/java && \
-  (echo oracle-java7-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections) && \
+  (echo oracle-java8-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections) && \
   apt-get update && \
-  apt-get install -y oracle-java7-installer && \
+  apt-get install -y oracle-java8-installer && \
   apt-get clean && \
   rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -25,7 +25,7 @@ ENV PATH ${PATH}:/opt/tools
 
 # Install Android SDK
 RUN cd /opt && \
-  wget --output-document=android-sdk.tgz --quiet http://dl.google.com/android/android-sdk_r24.1.2-linux.tgz && \
+  wget --output-document=android-sdk.tgz http://dl.google.com/android/android-sdk_r24.4.1-linux.tgz && \
   tar xzf android-sdk.tgz && \
   rm -f android-sdk.tgz && \
   chown -R root.root android-sdk-linux && \
