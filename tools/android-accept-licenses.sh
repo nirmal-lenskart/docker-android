@@ -1,14 +1,14 @@
 #!/usr/bin/expect -f
 
-set timeout -1
+set timeout 1800
 set cmd [lindex $argv 0]
 set licenses [lindex $argv 1]
 
 spawn {*}$cmd
 expect {
-    \"\[y\\/n\]: \" {
-        send \"y\\\r\"
-        expect \"y\\\r\"
+  "Do you accept the license '*'*" {
+        exp_send "y\r"
         exp_continue
-    }
+  }
+  eof
 }
