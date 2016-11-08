@@ -43,7 +43,7 @@ RUN echo "no" | android create avd --force --device "Nexus 5" --name test --targ
 RUN echo "no" | android create avd --force --device "Nexus 5" --name test1 --target android-24 --abi x86_64 --skin WVGA800 --sdcard 512M
 
 # Run the emulator
-emulator64-x86 -avd test1
+RUN emulator64-x86 -avd test1
 
 # Cleaning
 RUN apt-get clean
