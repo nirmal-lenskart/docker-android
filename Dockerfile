@@ -29,7 +29,7 @@ RUN cd /opt && \
   tar xzf android-sdk.tgz && \
   rm -f android-sdk.tgz && \
   chown -R root.root android-sdk-linux && \
-  /opt/tools/android-accept-licenses.sh "android-sdk-linux/tools/android update sdk --all --no-ui --filter platform-tools,tools,build-tools-24.0.3,build-tools-24.0.1,build-tools-22.0.1,android-24,android-23,android-22,addon-google_apis_x86-google-24,extra-android-support,extra-android-m2repository,extra-google-m2repository,sys-img-armeabi-v7a-android-24,sys-img-x86_64-android-24"
+  /opt/tools/android-accept-licenses.sh "android-sdk-linux/tools/android update sdk --all --no-ui --filter platform-tools,tools,build-tools-24.0.3,build-tools-24.0.1,build-tools-22.0.1,android-24,android-23,android-22,extra-android-support,extra-android-m2repository,extra-google-m2repository,sys-img-x86_64-android-24,sys-img-x86-android-24"
 
 # Setup environment
 ENV ANDROID_HOME /opt/android-sdk-linux
@@ -39,8 +39,7 @@ RUN which adb
 RUN which android
 
 # Create emulator
-RUN echo "no" | android create avd --force --device "Nexus 5" --name test --target android-24 --abi armeabi-v7a --skin WVGA800 --sdcard 512M
-RUN echo "no" | android create avd --force --device "Nexus 5" --name test1 --target android-24 --abi x86_64 --skin WVGA800 --sdcard 512M
+RUN echo "no" | android create avd --force --device "Nexus 5" --name test --target android-24 --abi x86 --skin WVGA800 --sdcard 512M
 
 # Cleaning
 RUN apt-get clean
