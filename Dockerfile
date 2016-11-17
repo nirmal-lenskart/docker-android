@@ -19,6 +19,16 @@ RUN dpkg --add-architecture i386 && \
   apt-get clean && \
   rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+# Install vnc, xvfb in order to create a 'fake' display and firefox
+  run     apt-get install -y x11vnc xvfb firefox
+  run     mkdir ~/.vnc
+
+# Setup a password
+  run     x11vnc -storepasswd 1234 ~/.vnc/passwd
+
+# Autostart firefox (might not be the best way to do it, but it does the trick)
+  run     bash -c 'echo "firefox" >> /.bashrc'
+
 # Copy install tools
 COPY tools /opt/tools
 ENV PATH ${PATH}:/opt/tools
