@@ -20,8 +20,11 @@ RUN dpkg --add-architecture i386 && \
   rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install vnc, xvfb in order to create a 'fake' display and firefox
-RUN apt-get install -y x11vnc xvfb firefox
-RUN mkdir ~/.vnc
+RUN apt-get update && \
+  apt-get install -y x11vnc xvfb firefox && \
+  mkdir ~/.vnc && \
+  apt-get clean && \
+  rm -fr /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Setup a password
 RUN x11vnc -storepasswd 1234 ~/.vnc/passwd
